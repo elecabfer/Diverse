@@ -1,0 +1,20 @@
+#login
+ssh frt.el.vital-it.ch -l ecabello
+#my directory
+cd /scratch/cluster/monthly/ecabello/
+#copy a file local > Vital-IT
+scp -r /Users/admin/Desktop/metagenome/Aline/16S/gg_13_5_taxonomy.txt  ecabello@frt.el.vital-it.ch:/scratch/cluster/monthly/ecabello/
+# copying a file Vital-IT > local
+scp -r ecabello@frt.el.vital-it.ch:/scratch/cluster/monthly/ecabello/Aline/reads/bowtie2_GreenGenes_info.txt Desktop/Pycharm/Maillard/
+
+#submit a job. -M memory (1299992-o output (email) -e error.txt -q queue (normal/long)
+
+bsub -q long -e -o
+
+#submit n bowtie2 jobs, bash script with for loop
+module add UHTS/Aligner/bowtie2/2.2.4;
+for i in {4..11}
+do
+bsub -M 122999990 -o "$i"_16S_gg.txt -e "$i"_16S_gg_error.txt bowtie2 --local -x ../gg_13_5_idxbowtie -k 100 -p 8 -N 1 -q --phred33 -U "$i"_*_unpaired_derep.fq -S "$i"_16S_gg.sam
+done
+
