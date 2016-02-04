@@ -1,0 +1,106 @@
+#Archivos locales:
+/archive/epfl/bbcf/data/
+
+#touch files
+find . | touch
+#meterlo todo en archive
+/home/ecabello/archive
+
+cat /db/genome/bacteria/*/*.fna > ncbi_bacterial_genomes.fa & # pasar todos
+
+#Crear un archivo wig a partir de un bam, cogiendo los datos de una sola especie (NC_013194)
+
+bam2density -s 2_S7_output_local_s.bam -p 0 -a NC_013194 -o 2_S7_coverage.wig
+
+#Cortar en trozos de n numeros de lineas (mejor muchos menos):
+split -l 1000000 7F_SeqPrep-merged.fastq 7F_split_
+
+Coger diferencias entre dos ficheros:
+
+diff Dereplication/dereplicated_2_S7_R1_tornado/dereplicated.fa Dereplication/2_S7_L001_R1_001_output_paired.fq | cat derepguai.txt 
+
+Print nth lines SED
+
+Print 5th line using sed
+sed -n "5p" filename
+To print 10-20 lines, type:
+sed -n "10,20p" filename
+To display line numbers:
+sed -n "10,20p" filename | cat -n
+
+Numero reads Fastq (n° lineas/4)
+
+cat 2_S7_L001_R1_001_output_paired.fq | echo $((`wc -l`/4))
+
+Convertir GB en GFF
+
+cat /db/genome/bacteria/*/*.fna > ncbi_bacterial_genomes.fa &
+gzip -cd /db/genome/bacteria/*/*.gbk.gz > ncbi_bacterial_genomes.gb &
+readseq -f 24 -o ncbi_bacterial_genomes.gff ncbi_bacterial_genomes.gb
+python process.py
+
+
+Descargar archivos desde URL (Maillard)
+
+Antes descargar tabla del NCBI, despues...
+coger las urll de ncbi, con $9, el nombre de la subcarpeta la coges de la tabla
+awk '{print "http://www.ncbi.nlm.nih.gov/protein/"$9}'  ProteinTable13828_175716.txt |grep -v Locus > file.txt
+
+#coger urls a partir de un archivo de texto: NO HA FUNCIONADO
+wget -i file.txt > PCE1_proteome.fasta
+
+
+########zip / unzip
+Using gunzip command:
+$ gunzip file.gz
+$ ls file
+Using gzip -d command:
+$ gzip -d file.gz
+$ ls file
+If file extension is tar.gz, type the command:
+$ tar -zxvf file.tar.gz
+
+
+
+
+fastq to fasta
+
+cat file.fq | awk '{if(NR%4==1) {printf(">%s\n",substr($0,2));} else if(NR%4==2) print;}' > file.fa
+
+cat test.fasta |       paste - - - - | sed 's/^@/>/g'| cut -f1-2 | tr '\t' '\n'
+
+
+CHANGE QUEUE
+bswitch 289637 long
+
+
+Biopython
+
+En Vital-IT
+
+python
+import Bio
+
+$PATH !
+
+from Bio import SeqIO
+ 
+input_handle = open("cor6_6.gb", "rU")
+output_handle = open("cor6_6.fasta", "w")
+ 
+sequences = SeqIO.parse(input_handle, "genbank")
+count = SeqIO.write(sequences, output_handle, "fasta")
+ 
+output_handle.close()
+input_handle.close()
+print "Coverted %i records" % count
+
+
+########## fastq to fasta NO VA!!!!!!!
+python
+import Bio
+
+$PATH !
+
+from Bio import SeqIO 
+SeqIO.convert('$4_unmapped_unpaired_derep.fq','fastq','$4_unmapped_unpaired_derep.fasta','fasta')
