@@ -18,3 +18,5 @@ do
 bsub -M 122999990 -o "$i"_16S_gg.txt -e "$i"_16S_gg_error.txt bowtie2 --local -x ../gg_13_5_idxbowtie -k 100 -p 8 -N 1 -q --phred33 -U "$i"_*_unpaired_derep.fq -S "$i"_16S_gg.sam
 done
 
+#CHANGE QUEUE
+bswitch 289637 long
