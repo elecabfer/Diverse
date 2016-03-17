@@ -18,6 +18,13 @@ split -l 1000000 7F_SeqPrep-merged.fastq 7F_split_
 Coger diferencias entre dos ficheros:
 
 diff Dereplication/dereplicated_2_S7_R1_tornado/dereplicated.fa Dereplication/2_S7_L001_R1_001_output_paired.fq | cat derepguai.txt 
+############################## remove lines from multiple files
+#!/usr/bin/env bash
+for f in *.txt; do
+    tail -n +2 "$f" > "${f}".tmp && mv "${f}".tmp "$f"
+    echo "Processing $f"
+done
+
 ###########################################################################
 sed -i 's/wt_4/wt_tp4/g' gene_expression_rpkm5.txt #### reemplazar wt_4 por wt_tp4 en el archivo gene_expression_rpkm.txt
 Print nth lines SED
