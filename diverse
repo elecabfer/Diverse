@@ -68,8 +68,8 @@ $ ls file
 If file extension is tar.gz, type the command:
 $ tar -zxvf file.tar.gz
 
-
-
+#compress in tar.gz
+tar -czvf bowtie_silva_48_bam.tar.gz bowtie_silva_48_bam/*
 
 fastq to fasta
 
