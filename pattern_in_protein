@@ -1,0 +1,9 @@
+import re
+db=open('uniprot_thymus.fasta', 'r').read().split('>')
+output=open('motif_uniprot_thymus.fasta', 'w')
+motif=r'GQL\w\wP'
+for i in db:
+    sequence=i.replace('\n', '')
+    match=re.search(motif, sequence)
+    if match:
+        output.write('>'+i)
