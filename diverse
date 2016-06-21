@@ -1,3 +1,10 @@
+##check if file exist:
+import os
+os.path.isfile('/tmp/foobar')
+False
+############repeat command every 30s
+watch -n 30 bjobs
+
 #Archivos locales:
 /archive/epfl/bbcf/data/
 
