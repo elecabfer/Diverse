@@ -34,6 +34,10 @@ done
 
 ###########################################################################
 sed -i 's/wt_4/wt_tp4/g' gene_expression_rpkm5.txt #### reemplazar wt_4 por wt_tp4 en el archivo gene_expression_rpkm.txt
+
+####### swap columns 
+awk -F $'\t' ' { t = $2; $2 = $3; $3 = t; print; } ' OFS=$'\t' heatmap_sting-cgas_m.txt > heatmap_cgas-wt.txt
+
 Print nth lines SED
 
 Print 5th line using sed
