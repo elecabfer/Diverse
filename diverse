@@ -2,6 +2,10 @@
 import os
 os.path.isfile('/tmp/foobar')
 False
+#example
+for i in range(2, 49):
+    if os.path.isfile("/scratch/cluster/monthly/ecabello/Aline/48_granules/diamond/"+str(i)+"_SE_uniprot_unmapped_e10.tab") == True:
+        inp=open("/scratch/cluster/monthly/ecabello/Aline/48_granules/diamond/"+str(i)+"_SE_uniprot_unmapped_e10.tab", "r").readlines()
 ############repeat command every 30s
 watch -n 30 bjobs
 
