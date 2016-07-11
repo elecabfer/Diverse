@@ -1,0 +1,18 @@
+min=2
+maxi=48
+count=1
+for i in range(min, maxi):
+    input=open(str(i)+'_SE_merge_overlap.fq','r').read()
+    read=input.split('@WIGTC-')#('\n')
+    output=open(str(i)+'_SE_merge_overlap_b.fq', 'w')
+    for r in read: #for each read
+        line=r.split('\n')
+        while len(line) >4:
+            line=line[:-1]
+        if  'HISEQ2:' in line[0]: #first line, identifier
+            if '-' not in line[1] and '@' not in line[1] and '+' not in line[1]: # 2nd line, sequence
+                if '+' in line[2] and len(line[2]) < 4: # 3rd line, +
+                    if len(line[3]) > 5 and "@WIGTC-HISEQ2:" not in line[3]: #4th line, quality
+                        output.write('@WIGTC-')
+                        for l in line:
+                            output.write(l+'\n')
