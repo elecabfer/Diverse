@@ -73,21 +73,6 @@ awk '{print "http://www.ncbi.nlm.nih.gov/protein/"$9}'  ProteinTable13828_17571
 wget -i file.txt > PCE1_proteome.fasta
 
 
-########zip / unzip
-Using gunzip command:
-$ gunzip file.gz
-$ ls file
-Using gzip -d command:
-$ gzip -d file.gz
-$ ls file
-If file extension is tar.gz, type the command:
-$ tar -zxvf file.tar.gz
-
-List content:
-tar -tvf bowtie_silva_96.tar.gz
-
-#compress in tar.gz
-tar -czvf bowtie_silva_48_bam.tar.gz bowtie_silva_48_bam/*
 
 fastq to fasta
 
