@@ -1,0 +1,17 @@
+########zip / unzip
+Using gunzip command:
+$ gunzip file.gz
+$ ls file
+Using gzip -d command:
+$ gzip -d file.gz
+$ ls file
+If file extension is tar.gz, type the command:
+$ tar -zxvf file.tar.gz
+
+List content:
+tar -tvf bowtie_silva_96.tar.gz
+
+#compress in tar.gz
+tar -czvf bowtie_silva_48_bam.tar.gz bowtie_silva_48_bam/*
+##tar 1 solo archivo
+tar -xzf ../../../aadler/O2_preprocessed_sequences.tar.gz O2_preprocessed_sequences/39_SE_merge_overlap.fq
