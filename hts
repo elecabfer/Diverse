@@ -1,0 +1,2 @@
+/data/epfl/bbcf/htsstation/working/mapseq/ + jobID (not key)
+hts_minilims.py -m mapseq/rnaseq -e/e jobkey #-P output prog, -l output files
