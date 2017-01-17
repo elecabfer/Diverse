@@ -1,0 +1,7 @@
+######## FASTQC en Vital-IT
+module add UHTS/Quality_control/fastqc/0.11.2;
+bsub -M 129992992 fastqc -o fastqc  /data/epfl/bbcf/NGSruns/NextSeqA/NXT0119/fastq_basespace/Swartz_Shann_truseq_dec16-34494469/*/*
+
+
+
+######### Report
