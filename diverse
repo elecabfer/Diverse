@@ -106,7 +106,9 @@ output_handle.close()
 input_handle.close()
 print "Coverted %i records" % count
 
-
+################################ GFF to GTF
+module add UHTS/Assembler/cufflinks/2.2.1;
+gffread my.gff3 -T -o my.gtf
 ########## fastq to fasta NO VA!!!!!!!
 python
 import Bio
