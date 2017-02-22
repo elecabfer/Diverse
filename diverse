@@ -12,6 +12,8 @@ watch -n 30 bjobs
 #Archivos locales:
 /archive/epfl/bbcf/data/
 
+#ver tamano de los archivos
+du -sh *
 #touch files
 find . | touch
 #meterlo todo en archive
