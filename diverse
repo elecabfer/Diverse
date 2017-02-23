@@ -8,6 +8,10 @@ for i in range(2, 49):
         inp=open("/scratch/cluster/monthly/ecabello/Aline/48_granules/diamond/"+str(i)+"_SE_uniprot_unmapped_e10.tab", "r").readlines()
 ############repeat command every 30s
 watch -n 30 bjobs
+###
+Cuando perl no me deja "make install":
+sudo make install
+Password: 1234
 
 #Archivos locales:
 /archive/epfl/bbcf/data/
