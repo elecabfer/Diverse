@@ -1,0 +1,23 @@
+Cuando perl no me deja "make install":
+sudo make install
+Password: 1234
+root@localhost: D0cGYf:3:tUG
+
+2017-02-23T19:11:07.128450Z 1 [Note] A temporary password is generated for root@localhost: D0cGYf:3:tUG
+
+If you lose this password, please consult the section How to Reset the Root Password in the MySQL reference manual.
+
+I shall assume that MySQL is installed in directory /usr/local/mysql (for Mac OS).
+
+cd /usr/local/mysql/bin
+mysql -u root -p
+password -> D0cGYf:3:tUG
+
+TRIBE_DIR="/Users/admin/Desktop/Simon/TRIBE/CODE/"
+#mysql --user=genome --host=genome-mysql.cse.ucsc.edu -A
+
+CREATE USER 'username@'localhost' IDENTIFIED BY '';
+GRANT ALL PRIVILEGES ON * . * TO 'username'@'localhost';
+FLUSH PRIVILEGES;
+#create mysql database
+CREATE DATABASE mmseq;
