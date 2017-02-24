@@ -1,3 +1,4 @@
+################################################################ Install
 Cuando perl no me deja "make install":
 sudo make install
 Password: 1234
@@ -6,18 +7,40 @@ root@localhost: D0cGYf:3:tUG
 2017-02-23T19:11:07.128450Z 1 [Note] A temporary password is generated for root@localhost: D0cGYf:3:tUG
 
 If you lose this password, please consult the section How to Reset the Root Password in the MySQL reference manual.
+###########################################################
 
 I shall assume that MySQL is installed in directory /usr/local/mysql (for Mac OS).
 
+##### Log in 
 cd /usr/local/mysql/bin
 mysql -u root -p
-password -> D0cGYf:3:tUG
+password -> D0cGYf:3:tUG ### ya noooo, ahora xxxx
+
+##cambiar contrasena
+alter user 'root'@'localhost' identified by 'xxxx';
 
 TRIBE_DIR="/Users/admin/Desktop/Simon/TRIBE/CODE/"
 #mysql --user=genome --host=genome-mysql.cse.ucsc.edu -A
 
-CREATE USER 'username@'localhost' IDENTIFIED BY '';
+create user 'username'@'localhost' identified by '';
+### CREATE USER 'username@'localhost' IDENTIFIED BY ''; ##typo
 GRANT ALL PRIVILEGES ON * . * TO 'username'@'localhost';
 FLUSH PRIVILEGES;
 #create mysql database
 CREATE DATABASE mmseq;
+
+
+### Login as username_localhots
+./mysql -u username -p 
+
+show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mmseq              |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.07 sec)
