@@ -67,6 +67,10 @@ cat /db/genome/bacteria/*/*.fna > ncbi_bacterial_genomes.fa &
 gzip -cd /db/genome/bacteria/*/*.gbk.gz > ncbi_bacterial_genomes.gb &
 readseq -f 24 -o ncbi_bacterial_genomes.gff ncbi_bacterial_genomes.gb
 python process.py
+#################################
+SRA --> fastq
+module add UHTS/Analysis/sratoolkit/2.8.0;
+fastq-dump {options} D_melanogaster.sra
 
 
 Descargar archivos desde URL (Maillard)
