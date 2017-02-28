@@ -1,3 +1,11 @@
+##########################
+###para DBI, por ejemplo
+Cuando perl no me deja "make install":
+sudo make install
+Password: 1234
+
+sudo cpan -i DBD::mysql   #el sudo se escribe para no tener problemas de permisos
+
 ################################################################ Install
 Cuando perl no me deja "make install":
 sudo make install
