@@ -31,7 +31,10 @@ CREATE DATABASE mmseq;
 
 
 ### Login as username_localhots
+
+cd /usr/local/mysql/bin
 ./mysql -u username -p 
+password: ##nada, Enter
 
 show databases;
 +--------------------+
