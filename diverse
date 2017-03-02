@@ -14,9 +14,21 @@ sudo make install
 Password: 1234
 
 cpan -i DBD::mysql
-
+### count number lines
+wc -l
 #Archivos locales:
 /archive/epfl/bbcf/data/
+
+##delete line number 1108:
+sed '1108d' snp128.vcf >snp128_m.vcf
+
+## remove all the lines containing "-" in the 4th column
+awk '$4 != "-"' snp128.vcf > snp128_m.vcf 
+##delete lines 1108 and 1446
+sed '1108d;1446d' snp128.vcf > snp128_m.vcf
+
+####see line number 1107:
+less +1107 snp128.vcf
 
 #ver tamano de los archivos
 du -sh *
