@@ -21,7 +21,7 @@ I shall assume that MySQL is installed in directory /usr/local/mysql (for Mac OS
 
 ##### Log in 
 cd /usr/local/mysql/bin
-mysql -u root -p
+./mysql -u root -p
 password -> D0cGYf:3:tUG ### ya noooo, ahora xxxx
 
 ##cambiar contrasena
@@ -55,3 +55,13 @@ show databases;
 | sys                |
 +--------------------+
 5 rows in set (0.07 sec)
+
+nohup /Users/admin/Desktop/Simon/TRIBE/CODE/load_table.sh Bicc1KH1_unique_hits_s.sam testrna_bicc1kh1 bicc1kh1 1 &
+
+nohup /Users/admin/Desktop/Simon/TRIBE/CODE/load_table.sh wt1_unique_hits_s.sam wt1_gDNA wt1_gDNA 25 &
+./rnaedit_gDNA_RNA.sh
+##################################################### ERRORES
+Error in executing mysql query: DBD::mysql::st execute failed: Table 'mmseq.testrna_bicc1kh1' doesn't exist at /Users/admin/Desktop/Simon/TRIBE/CODE/find_rnaeditsites.pl line 177.
+DBD::mysql::st fetchrow failed: fetch() without execute() at /Users/admin/Desktop/Simon/TRIBE/CODE/find_rnaeditsites.pl line 223.
+cd /usr/local/mysql/bin
+./mysql_upgrade -u username -p --force
