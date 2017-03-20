@@ -68,5 +68,8 @@ DBD::mysql::st fetchrow failed: fetch() without execute() at /Users/admin/Deskto
 ###### HACER NOHUP WT
 use mmseq;
 show tables;
+##show table sizes
+
+SELECT table_name AS "Table", ROUND(((data_length + index_length) / 1024 / 1024), 2) AS "Size (MB)" FROM information_schema.TABLES WHERE table_schema = "mmseq" ORDER BY (data_length + index_length) DESC;
 
 
