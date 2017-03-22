@@ -6,6 +6,8 @@ cd /scratch/cluster/monthly/ecabello/
 scp -r /Users/admin/Desktop/metagenome/Aline/16S/gg_13_5_taxonomy.txt  ecabello@frt.el.vital-it.ch:/scratch/cluster/monthly/ecabello/
 # copying a file Vital-IT > local
 scp -r ecabello@frt.el.vital-it.ch:/scratch/cluster/monthly/ecabello/Aline/reads/bowtie2_GreenGenes_info.txt Desktop/Pycharm/Maillard/
+# copying file to BBCF server
+scp -r *.sam  ecabello@svitsrv25.epfl.ch:elena
 
 #submit a job. -M memory (1299992-o output (email) -e error.txt -q queue (normal/long)
 
