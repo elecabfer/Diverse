@@ -24,3 +24,5 @@ if ( $option{a} && $option{t} && $option{g} && $option{e} && $option{o} && $opti
        
 ##saving count of bases in variables "Acount, Zcount...)
 my %gstrings = ("A"=>"g.Acount","T"=>"g.Tcount","C"=>"g.Ccount","G"=>"g.Gcount");
+close OUT;
+exit;
