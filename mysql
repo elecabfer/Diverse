@@ -71,5 +71,13 @@ show tables;
 ##show table sizes
 
 SELECT table_name AS "Table", ROUND(((data_length + index_length) / 1024 / 1024), 2) AS "Size (MB)" FROM information_schema.TABLES WHERE table_schema = "mmseq" ORDER BY (data_length + index_length) DESC;
-
+############################## RUN FROM sever
+ssh ecabello@svitsrv25.epfl.ch
+mysql -u ecabello -p mmseq 
+8HbnR345h
+##tendria que haber dado provilegios y creado la db mm9, pero ya lo ha hecho Fab :)
+nohup TRIBE/CODE/load_table.sh Bicc1KH1_unique_hits_s.sam testrna_bicc1kh1 bicc1kh1 1 &
+nohup TRIBE/CODE/load_table.sh wt1_unique_hits_s.sam wt1_gDNA wt1_gDNA 25 &
+###see progress:
+jobs
 
