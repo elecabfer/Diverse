@@ -80,4 +80,31 @@ nohup TRIBE/CODE/load_table.sh Bicc1KH1_unique_hits_s.sam testrna_bicc1kh1 bicc1
 nohup TRIBE/CODE/load_table.sh wt1_unique_hits_s.sam wt1_gDNA wt1_gDNA 25 &
 ###see progress:
 jobs
+##load only from data
+perl /home/ecabello/elena/TRIBE/CODE/load_matrix_data.pl -t testrna_wt2 -d wt2_unique_hits_s.sam.matrix
+nohup TRIBE/CODE/load_table.sh ADAR1_unique_hits_s.sam testrna_ADAR1 ADAR1 2
+nohup TRIBE/CODE/load_table.sh ADAR2_unique_hits_s.sam testrna_ADAR2 ADAR2 3
+nohup TRIBE/CODE/load_table.sh Bicc1KH2_unique_hits_s.sam testrna_Bicc1KH2 Bicc1KH2 4
+nohup TRIBE/CODE/load_table.sh Bicc1FL1_unique_hits_s.sam testrna_Bicc1FL1 Bicc1FL1 5
+nohup TRIBE/CODE/load_table.sh Bicc1FL2_unique_hits_s.sam testrna_Bicc1FL2 Bicc1FL2 6
+nohup TRIBE/CODE/load_table.sh wt2_unique_hits_s.sam testrna_wt2 wt2 8
++------------------+-----------+
+| Table            | Size (MB) |
++------------------+-----------+
+| testrna_Bicc1KH2 |   6096.46 |
+| testrna_bicc1kh1 |   5858.72 |
+| testrna_wt2      |   5731.70 |
+| testrna_Bicc1FL1 |   5375.24 |
+| testrna_ADAR2    |   5359.84 |
+| testrna_Bicc1FL2 |   5242.54 |
+| testrna_ADAR1    |   4314.70 |
+| wt1_gDNA         |   3049.06 |
+| rr_test_gDNA     |      3.86 |
+| rr_test_RNA      |      3.86 |
++------------------+-----------+
+10 rows in set (0.02 sec)
 
+##show number of columns:
+select count(*) from rr_test_gDNA;
+##ver todo
+select * from  rr_test_RNA;
