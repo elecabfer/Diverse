@@ -104,6 +104,8 @@ cat file.fq | awk '{if(NR%4==1) {printf(">%s\n",substr($0,2));} else if(NR%4==2)
 
 cat test.fasta |       paste - - - - | sed 's/^@/>/g'| cut -f1-2 | tr '\t' '\n'
 
+### bam to fasta:
+seqret -sequence "$i".bam -outseq "$i"_accepted_hits_bt2_200.fasta
 
 CHANGE QUEUE
 bswitch 289637 long
