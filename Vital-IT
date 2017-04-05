@@ -22,3 +22,7 @@ done
 
 #CHANGE QUEUE
 bswitch 289637 long
+
+
+##Remove .out files
+ /home/ecabello/.lsbatch
