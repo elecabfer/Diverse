@@ -27,6 +27,12 @@ awk '$4 != "-"' snp128.vcf > snp128_m.vcf
 ##delete lines 1108 and 1446
 sed '1108d;1446d' snp128.vcf > snp128_m.vcf
 
+##MAL, para las lineas que CONTENGAN A o T
+awk '$4 ~ /A/ || $4 ~ /T/'   >> filtered_output.vcf  
+
+#lineas que solo tengan A o T en la cuarta columna
+awk '$4 =="A" || $4 =="T"' output.vcf  >> filtered_output.vcf  
+
 ####see line number 1107:
 less +1107 snp128.vcf
 
