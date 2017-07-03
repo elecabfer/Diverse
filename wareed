@@ -1,0 +1,98 @@
+#####################################################T_A_GT_consecutive_or_not.xlsx
+import re
+dir="/scratch/cluster/monthly/ecabello/Wareed/"
+inputfiles=["gDNA5_S1", "gDNA-T75_S2", "gDNA-TQ5_S3","Telo5_S4","Telo-T75_S5","Telo-TQ5_S6", "Telo-EV40_S7", "Telo-T740_S8", "Telo-TQ40\
+_S9"]
+#output = open("/scratch/cluster/monthly/ecabello/Wareed/new_sequencing/output_mutatio
+strand="f" #raw_input("Strand? f/rev: ") #or "rev"
+readlist=[]
+sixor4="4"
+####################################################
+if strand == "f":
+    print "FORWARD", sixor4
+    if sixor4 == "4":
+        motivo6=r'T\wA[GT]{3}' #T\wA[GT]{3}T\wA[GT]{3}T\wA[GT]{3}'
+    elif sixor4 == "6":
+        motivo6=r'T\wA[GT]{3}' #T\wA[GT]{3}T\wA[GT]{3}T\wA[GT]{3}T\wA[GT]{3}T\wA[GT]{3}'
+    #motivosolo=r'T\wA[GT]{3,}'
+    motivos=[r'T\wAGGG',r'T\wATGG',r'T\wAGTG',r'T\wAGGT', r'T\wATTG', r'T\wAGTT', r'T\wATTT']
+    output = open(dir+"/hts_hg38/output_mutations_"+sixor4+"x_mutated_all_unmapped.xls" , 'w')  ####CHANGE
+else:
+    print "REVERSE", sixor4
+    if sixor4 == "4":
+        motivo6=r'[CA]{3}T\wA'#[CA]{3}T\wA[CA]{3}T\wA[CA]{3}T\wA'
+    elif sixor4 == "6":
+        motivo6=r'[CA]{3}T\wA' #[CA]{3}T\wA[CA]{3}T\wA[CA]{3}T\wA[CA]{3}T\wA[CA]{3}T\wA'
+    motivos=[r'CCCT\wA',r'CCAT\wA',r'CACT\wA',r'ACCT\wA', r'CAAT\wA', r'AACT\wA', r'AAAT\wA']
+    output = open(dir+"/hts_hg38/output_mutations_rev_"+sixor4+"x_mutated_all_unmapped.xls" , 'w') #REVERSE     ###CHANGE
+
+def findmotif(motifinput, motif6, fichier, salida): #motiflist y fichier son listas con los motivos y los archivos
+    for f in fichier:
+        fasta=open(f+"_"+strand+"_"+sixor4+".fasta", 'w')
+#        R1=open(dir+"/new_sequencing/"+f+"_R1_001.fastq", "r").read().split("@NB500883")
+        R1=open(dir+"hts_hg38/"+f+"_unmapped.fastq", "r").read().split("@NB500883")
+        salida.write(f+"\nMotif:\tNumber of hits:\tProportion:\tReads matching the motif, x times:")
+        a=0
+        t=0
+        g=0
+        c=0
+        r6=[]
+        R1=R1[1:]
+        motif6count=0
+                for entry in R1:
+            read2=entry.split("\n")
+            read=read2[1]
+            match6=re.findall(motif6,read)
+#            print re.findall(motif6,read)
+#            hit=re.findall(motif6,read)
+            if len(match6)>=int(sixor4):#           if hit:  ### CHANGE
+                r6.append(read)
+                motif6count += 1 #len(r6) Numero de reads con mas de 4x o 6x
+                ##################### output FASTA file
+                fasta.write("@NB500883"+entry)
+#                print "@NB500883"+entry
+        for l in motifinput:
+            motiflist=[]
+            cuenta=[] #contar hits de cada motivo
+            cuentatotal=0 #
+            countread=0
+            readlist=[]
+            usedmotif=[]
+            for r in r6:
+                match=re.findall(l,r) #motivo
+                cuenta.append(len(match))  #el numero de matchs (de un motivo) en un read: [4,4,5,1,5,0]
+                cuentatotal+=len(match)   #total match de un motivo
+                a+=r.count("A")
+                t+=r.count("T")
+                c+=r.count("C")
+                g+=r.count("G")
+                if len(match)>=1: #si ese motivo esta en el match
+                    countread+=1  #en cuantas reads esta el match
+#                    print match, len(match)
+            permillion=int((100.0/(motif6count+1))*cuentatotal)#countread) #replace count6read by len(R1)
+            salida.write("\n"+l+"\t"+str(cuentatotal)+"\t"+str(permillion)+" per 100 reads")
+            if len(cuenta)> 1 and max(cuenta)>=4:  #in a tab
+                for n in range(4,max(cuenta)):
+                    if cuenta.count(n) != 0:
+                        salida.write("\t"+str(n)+"x: "+str(cuenta.count(n)))
+                    if cuenta.count(n) == 0:
+                        print "MAL"
+                        print  n, max(cuenta)
+                        if n in cuenta:
+                            print "si esta"
+            if len(cuenta) <1:
+                print l
+        sum_nt=float(a+t+c+g)
+        ratioa=(a/sum_nt)*10
+        ratiot=(t/sum_nt)*10
+        ratiog=(g/sum_nt)*10
+        ratioc=(c/sum_nt)*10
+        salida.write("\nTotal number of reads: "+str(len(R1)))
+        salida.write('\nTotal number of reads with '+sixor4+'x motif: '+str(motif6count))  ####CHANGE
+        salida.write("\nComposition   A: "+(str(ratioa))[:4]+"; T: "+ (str(ratiot))[:4]+ "; G: "+ (str(ratiog))[:4]+ "; C: "+ (str(rati\
+oc))[:4])
+        salida.write("\n\n")
+        #print "\nComposition (%) A: "+str(ratioa)+"; T: "+ str(ratiot)+ "; G: "+ str(ratiog)+ "; C: "+ str(ratioc)
+findmotif(motivos, motivo6, inputfiles, output)
+print "FINI!!!"
+#######################################
