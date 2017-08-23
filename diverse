@@ -67,6 +67,10 @@ sed -i 's/wt_4/wt_tp4/g' gene_expression_rpkm5.txt #### reemplazar wt_4 por wt_t
 sed -i 's/\/pRyhB_3_accepted_hits.bam//g' megaplasmid_counts_fC.txt*  ## reemplazar \pRyhB_3_accepted_hits.bam por nada en todos los archivos
 ####### swap columns 
 awk -F $'\t' ' { t = $2; $2 = $3; $3 = t; print; } ' OFS=$'\t' heatmap_sting-cgas_m.txt > heatmap_cgas-wt.txt
+##########################
+### Replace ^M by newline. ^M == (Ctrl+V) + (Ctrl +M)
+sed -i 's/^M/\n/g'
+############################
 
 Print nth lines SED
 
