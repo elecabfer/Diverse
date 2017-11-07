@@ -22,6 +22,14 @@ wc -l
 ##delete line number 1108:
 sed '1108d' snp128.vcf >snp128_m.vcf
 
+##### add something a the beggining of the line (^)
+$ sed 's/^/#/' file.txt
+#add
+#character
+#at the
+#beginning of
+#each line
+
 ## remove all the lines containing "-" in the 4th column
 awk '$4 != "-"' snp128.vcf > snp128_m.vcf 
 ##delete lines 1108 and 1446
