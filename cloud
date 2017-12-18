@@ -1,3 +1,7 @@
+############################################
+create the key with the instructions and umount the volume before deleting the instance
+
+#############################################
 #create key, download and move to /.ssh
 chmod 600 (key)
 
@@ -12,40 +16,29 @@ ssh -i ~/.ssh/(key).pem ubuntu@(IP)
 create a new volume, 'manage attachment'
 
 
-become admin: sudo bash
 
-root@lmalms-demo-dec:~# lsblk
+root@lmalms-demo-dec:~# lsblk  #is it attached?
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
 vda    253:0    0  100G  0 disk
 `-vda1 253:1    0  100G  0 part /
 vdb    253:16   0 1000G  0 disk
 
 Here, vdb is your volume. 
+####root is the superuser in linux (sudo)
+#become admin: 
+sudo -s
+#root@...#
 
-fdisk /dev/vdb
-(m #help)
-n #new partition, press enter 4 times
-w #write
+#Make the file system: ###reformat --> delete
+mkfs.ext4 /dev/vdb
 
-now:
-root@lmalms-demo-dec:~# lsblk
-NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-vda    253:0    0  100G  0 disk
-`-vda1 253:1    0  100G  0 part /
-vdb    253:16   0 1000G  0 disk
-`-vdb1 253:17   0 1000G  0 part
-
-##still in root
-Make the file system:
-mkfs.ext4 /dev/vdb1
-
-make a mount point (just a directory)
+#make a mount point (just a directory)
 mkdir /data
 
-mount the new file system:
-mount /dev/vdb1 /data
+#mount the new file system: #important, every time I resize/restart
+mount /dev/vdb /data
 
-make sure it all went ok:
+#make sure it all went ok:
 root@lmalms-demo-dec:~# df -h
 Filesystem      Size  Used Avail Use% Mounted on
 udev            3.8G     0  3.8G   0% /dev
@@ -55,13 +48,14 @@ tmpfs           3.9G     0  3.9G   0% /dev/shm
 tmpfs           5.0M     0  5.0M   0% /run/lock
 tmpfs           3.9G     0  3.9G   0% /sys/fs/cgroup
 tmpfs           780M     0  780M   0% /run/user/1000
-/dev/vdb1       985G   72M  935G   1% /data
+/dev/vdb       985G   72M  935G   1% /data
 
-make sure the ubuntu user can use the new file system:
-chown ubuntu.ubuntu /data
+touch /data/test #permission denied
+
+#make sure the ubuntu user can use the new file system:
+chown ubuntu:ubuntu /data
 
 #get out of root
-exit
 exit
 
 use the disk:
@@ -74,13 +68,13 @@ ubuntu@lmalms-demo-dec:/data/test1$ touch file1
 ubuntu@lmalms-demo-dec:/data/test1$ vi file1
 
 
-Most NGS software can be installed as follows:
+#Most NGS software can be installed as follows: #-y answer always yes
 sudo apt -y install samtools bamtools
 
-Seaching for available software:
+#Seaching for available software:
 ubuntu@lmalms-demo-dec:/data/test1$ aptitude search abys
 
-copy data using rsync:
+#copy data using rsync:
 rsync --progress -avr -e 'ssh -i ~/.ssh/lmalms_a001.pem' 20161020071040895-150265/20151216_03_HeLa_FT_HCD_EThCD.mzML.gz 20161020071140632-150266/20151216_04_HeLa_FT_HCD_EThCD.mzML.gz 20161020071845655-150274/20151216_15_HeLa_FT_HCD_EThCD.mzML.gz 20161020072116638-150277/20151216_24_HeLaFT_HCD_EThCD.mzML.gz ubuntu@172.23.197.220:/data/copied_data/
 
 
@@ -92,3 +86,18 @@ Host wn
     User ubuntu
     Hostname 172.23.193.187
     IdentityFile ~/.ssh/lmalms_a001.pem
+    
+    
+    
+    #####################################
+    
+    perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = "C"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+
+    
+export LC_ALL="en_US.UTF-8"
