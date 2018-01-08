@@ -3,6 +3,7 @@ cd /data/
 wget https://github.com/bedops/bedops/releases/download/v2.4.30/bedops_linux_x86_64-v2.4.30.tar.bz2
 tar jxvf bedops_linux_x86_64-v2.4.30.tar.bz2
 PATH=$PATH:/data/bin/
+export PATH
 
 #run
 wig2bed < GSM2242764_Mixl1-ChIP_Zv9.wig > GSM2242764_Mixl1-ChIP_Zv9.bed
