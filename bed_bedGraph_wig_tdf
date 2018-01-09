@@ -1,3 +1,7 @@
+##### bedGraph to bed
+cat GSM1652660_Smad2_dome_WT.bedGraph  | awk '{print $1 "\t" $2 "\t" $3}' > GSM1652660_Smad2_dome_WT.bed
+
+####### WIG2BED
 ##install
 cd /data/
 wget https://github.com/bedops/bedops/releases/download/v2.4.30/bedops_linux_x86_64-v2.4.30.tar.bz2
