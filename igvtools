@@ -1,1 +1,0 @@
-java -Xmx1500m  -jar igvtools.jar  tdftobedgraph ../GSM1652660_Smad2_dome_WT.tdf ../GSM1652660_Smad2_dome_WT.bedGraph
