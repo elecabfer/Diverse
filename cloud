@@ -12,10 +12,7 @@ create instance, (make sure to create a 'security key')
 log into the computer: (get ip from the cloud.s3it.uzh.ch)
 ssh -i ~/.ssh/(key).pem ubuntu@(IP)
 
-
 create a new volume, 'manage attachment'
-
-
 
 root@lmalms-demo-dec:~# lsblk  #is it attached?
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
@@ -67,7 +64,6 @@ ubuntu@lmalms-demo-dec:/data$ cd test1
 ubuntu@lmalms-demo-dec:/data/test1$ touch file1
 ubuntu@lmalms-demo-dec:/data/test1$ vi file1
 
-
 #Most NGS software can be installed as follows: #-y answer always yes
 sudo apt -y install samtools bamtools
 
@@ -76,7 +72,6 @@ ubuntu@lmalms-demo-dec:/data/test1$ aptitude search abys
 
 #copy data using rsync:
 rsync --progress -avr -e 'ssh -i ~/.ssh/lmalms_a001.pem' 20161020071040895-150265/20151216_03_HeLa_FT_HCD_EThCD.mzML.gz 20161020071140632-150266/20151216_04_HeLa_FT_HCD_EThCD.mzML.gz 20161020071845655-150274/20151216_15_HeLa_FT_HCD_EThCD.mzML.gz 20161020072116638-150277/20151216_24_HeLaFT_HCD_EThCD.mzML.gz ubuntu@172.23.197.220:/data/copied_data/
-
 
 Convenience to login:
 in file ~/.ssh/config
@@ -87,8 +82,6 @@ Host wn
     Hostname 172.23.193.187
     IdentityFile ~/.ssh/lmalms_a001.pem
     
-    
-    
     #####################################
     
     perl: warning: Please check that your locale settings:
@@ -98,6 +91,5 @@ Host wn
 	LANG = "C"
     are supported and installed on your system.
 perl: warning: Falling back to the standard locale ("C").
-
     
 export LC_ALL="en_US.UTF-8"
