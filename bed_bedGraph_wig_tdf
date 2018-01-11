@@ -2,7 +2,8 @@
 cat GSM1652660_Smad2_dome_WT.bedGraph  | awk '{print $1 "\t" $2 "\t" $3}' > GSM1652660_Smad2_dome_WT.bed
 
 #tdf to bedGraph
-PATH=$PATH:/data/bin/IGVTools/
+export PATH=$PATH:/data/bin/IGVTools/
+source ~/.profile
 igvtools  tdftobedgraph GSM1652663_FoxH1_dome_WT.tdf  GSM1652663_FoxH1_dome_WT.bedGraph
 
 #java -Xmx1500m  -jar igvtools.jar  tdftobedgraph ../GSM1652660_Smad2_dome_WT.tdf ../GSM1652660_Smad2_dome_WT.bedGraph
