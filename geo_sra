@@ -3,7 +3,6 @@ geoname=elecabfer
 
 /home/jduc/local/bin/ncftpput -z -R -B 33554432 -u geo -p $password ftp-private.ncbi.nlm.nih.gov fasp $geoname
 
-
 ##################################################### SRA  ##########################################################
 ###download from SRA the fastq
 #explanation: https://www.biostars.org/p/111040/
@@ -15,13 +14,7 @@ prefetch -v SRR925811
 #Note where the sra file is downloaded (by default to /home/[USER]/ncbi/public/sra/.) 
 #and then convert to fastq with something like the following.
 
-fastq-dump --outdir /opt/fastq/ --split-files /home/[USER]/ncbi/public/sra/SRR925811.sra
-
-#Note where the sra file is downloaded (by default to /home/[USER]/ncbi/public/sra/.) 
-#and then convert to fastq with something like the following.
-
-fastq-dump --outdir /opt/fastq/ --split-files /home/[USER]/ncbi/public/sra/SRR925811.sra
+fastq-dump --outdir /data/chip_track/drerio/Mixl1/  --split-files /home/ubuntu/ncbi/public/sra/SRR3932465.sra
 
 #If you just want to download X number of raw (fastq) reads to standard output from a particular run
 fastq-dump -X 5 -Z SRR925811
-
