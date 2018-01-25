@@ -16,6 +16,9 @@ Password: 1234
 cpan -i DBD::mysql
 ### count number lines
 wc -l
+### count number columns
+head -1 SN2_AHY3WGBGX3_S6_R2.ReadCounts.tsv | wc -w
+
 #Archivos locales:
 /archive/epfl/bbcf/data/
 
