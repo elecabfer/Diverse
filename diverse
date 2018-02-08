@@ -1,3 +1,15 @@
+#verbose and get name from website
+curl -v -O http://htsstation.epfl.ch/data_epfl/archive/ecabello.tgz
+Continue downloading a document:
+
+        curl -C -O http://htsstation.epfl.ch/data_epfl/archive/ecabello.tgz
+
+ Continue uploading a document(*1):
+
+        curl -C - -T file ftp://ftp.server.com/path/file
+
+
+
 ##check if file exist:
 import os
 os.path.isfile('/tmp/foobar')
