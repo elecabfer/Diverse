@@ -1,8 +1,8 @@
 #####run jobs without getting interrupted
 
 python intervals_gff.py < /dev/null > std.out 2> err.out &
-[1] 9913 #Job ID
-kill -9 9913 #kill job
+[1]20525 #Job ID
+kill -9 20525 #kill job
 
 ps fax | grep 9913
 ############################################
