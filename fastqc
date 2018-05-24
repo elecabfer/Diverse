@@ -5,6 +5,8 @@ bsub -M 129992992 fastqc -o fastqc  /data/epfl/bbcf/NGSruns/NextSeqA/NXT0119/fas
 ### fastqc en Cloud
 #download from https://www.bioinformatics.babraham.ac.uk/projects/download.html to wherever
 
-#unzip and
-place a link in /usr/local/bin to be able to run the program from any location:
+#unzip andplace a link in /usr/local/bin to be able to run the program from any location:
 sudo ln -s ../../FastQC/fastqc  /usr/local/bin/fastqc
+
+mkdir fastqc fastqc -o fastqc  /data/epfl/bbcf/NGSruns/NextSeqA/NXT0119/fastq_basespace/Swartz_Shann_truseq_dec16-34494469/*/*
+
