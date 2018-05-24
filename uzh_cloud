@@ -7,7 +7,27 @@ kill -9 20525 #kill job
 ps fax | grep 9913
 ############################################
 create the key with the instructions and umount the volume before deleting the instance
+############################################
+#mount new volume (Elena's way)
+#Follow the instructions: https://s3itwiki.uzh.ch/display/clouddoc/Training+handout#Traininghandout-2.6.AttachavolumetotheInstance
+#Add volume--> manage conexions -> attach to...volume
 
+#take note of the letter after dev/vd*
+sudo mkfs.ext4 /dev/vdc  #for /dev/vdc
+sudo mount /dev/vdc /mnt
+sudo chown -R ubuntu:ubuntu /mnt
+
+
+###########creating second instance, elena2
+#associated to key elenita, which is already at /Users/elena/.ssh/id_rsa
+ssh ubuntu@172.23.62.136
+
+sudo -s #become superuser to mkdir /data and change user permission
+mkdir /data #important to have the "/" before "data"
+chown ubuntu:ubuntu /data #change permissions for /data
+exit #exit sudo
+
+########################################### First time I did it
 #############################################
 #create key, download and move to /.ssh
 chmod 600 (key)
@@ -35,6 +55,7 @@ sudo -s
 
 #Make the file system: ###reformat --> delete
 mkfs.ext4 /dev/vdb
+
 
 #make a mount point (just a directory)
 mkdir /data
