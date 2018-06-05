@@ -12,10 +12,12 @@ create the key with the instructions and umount the volume before deleting the i
 #Follow the instructions: https://s3itwiki.uzh.ch/display/clouddoc/Training+handout#Traininghandout-2.6.AttachavolumetotheInstance
 #Add volume--> manage conexions -> attach to...volume
 
+mkdir /data
+
 #take note of the letter after dev/vd*
 sudo mkfs.ext4 /dev/vdc  #for /dev/vdc
-sudo mount /dev/vdc /mnt
-sudo chown -R ubuntu:ubuntu /mnt
+sudo mount /dev/vdc /data?
+sudo chown -R ubuntu:ubuntu /data?
 
 
 ###########creating second instance, elena2
