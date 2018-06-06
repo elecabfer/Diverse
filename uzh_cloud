@@ -17,7 +17,18 @@ mkdir /data
 #take note of the letter after dev/vd*
 sudo mkfs.ext4 /dev/vdc  #for /dev/vdc
 sudo mount /dev/vdc /data?
-sudo chown -R ubuntu:ubuntu /data?
+sudo chown -R ubuntu:ubuntu /data
+ubuntu@elena2:/data/chip_track/drerio$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev             31G     0   31G   0% /dev
+tmpfs           6.2G  704K  6.2G   1% /run
+/dev/vda1        97G   92G  5.1G  95% /
+tmpfs            31G     0   31G   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs            31G     0   31G   0% /sys/fs/cgroup
+/dev/vda15      105M  3.4M  102M   4% /boot/efi
+tmpfs           6.2G     0  6.2G   0% /run/user/1000
+/dev/vdb        492G   73M  467G   1% /data
 
 
 ###########creating second instance, elena2
