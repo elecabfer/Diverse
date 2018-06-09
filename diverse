@@ -18,6 +18,9 @@ False
 for i in range(2, 49):
     if os.path.isfile("/scratch/cluster/monthly/ecabello/Aline/48_granules/diamond/"+str(i)+"_SE_uniprot_unmapped_e10.tab") == True:
         inp=open("/scratch/cluster/monthly/ecabello/Aline/48_granules/diamond/"+str(i)+"_SE_uniprot_unmapped_e10.tab", "r").readlines()
+        
+#######################
+awk '{print "chr"$0}'  macs2_eomes_p2_r1_summits.bed  > macs2_eomes_p2_r1_summits_chr.bed
 ############repeat command every 30s
 watch -n 30 bjobs
 ###para DBI, por ejemplo
