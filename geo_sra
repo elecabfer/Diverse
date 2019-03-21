@@ -18,3 +18,7 @@ fastq-dump --outdir /data/chip_track/drerio/Mixl1/  --split-files /home/ubuntu/n
 
 #If you just want to download X number of raw (fastq) reads to standard output from a particular run
 fastq-dump -X 5 -Z SRR925811
+
+
+###unload prefetch
+sudo apt-get --purge remove prefetch
