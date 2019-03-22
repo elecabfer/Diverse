@@ -4,6 +4,9 @@ geoname=elecabfer
 /home/jduc/local/bin/ncftpput -z -R -B 33554432 -u geo -p $password ftp-private.ncbi.nlm.nih.gov fasp $geoname
 
 ##################################################### SRA  ##########################################################
+Installation SRA-toolkit:
+https://github.com/ncbi/sra-tools/wiki/HowTo:-Binary-Installation
+
 ###download from SRA the fastq
 #explanation: https://www.biostars.org/p/111040/
 #look for the Relations --> run number
@@ -21,4 +24,4 @@ fastq-dump -X 5 -Z SRR925811
 
 
 ###unload prefetch
-sudo apt-get --purge remove prefetch
+sudo apt-get --purge remove sra-toolkit-......
