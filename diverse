@@ -8,7 +8,9 @@ Continue downloading a document:
 
         curl -C - -T file ftp://ftp.server.com/path/file
 
-
+######################
+sort by the 8th column, numerically (n),  descending order (r)
+sort  -k8,8rn nanog-like.narrowPeak > nanog-like_sorted_pvalue.narrowPeak
 
 ##check if file exist:
 import os
