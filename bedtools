@@ -1,0 +1,2 @@
+#intersect
+bedtools intersect -wb -a nanog-like.narrowPeak -b group_3peaks_annotated_300.bed > intersect_nanog_3peaks.bed
