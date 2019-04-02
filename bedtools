@@ -1,2 +1,7 @@
 #intersect
 bedtools intersect -wb -a nanog-like.narrowPeak -b group_3peaks_annotated_300.bed > intersect_nanog_3peaks.bed
+
+samtools faidx Danio_rerio.Zv11_all.fa > Danio_rerio.Zv11_all.genome
+
+
+
